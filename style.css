@@ -108,6 +108,15 @@ main {
 }
 
 .list {
+    input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        width: 1.6rem;  /* Mesma largura do custom-checkbox */
+        height: 1.6rem; /* Mesma altura */
+        margin: 0;
+        cursor: pointer;
+        z-index: 2; /* Fica sobre o custom-checkbox */
+      }
     .item {
         background: var(--background-secondary);
         padding: 1.2rem;
@@ -127,10 +136,6 @@ main {
             align-items: center;
         }
 
-        input {
-            display: none;
-        }
-
         .custom-checkbox {
             width: 1.6rem;
             height: 1.6rem;
@@ -148,6 +153,10 @@ main {
             label {
                 text-decoration: line-through;
             }
+        }
+
+        label {
+            cursor: pointer;
         }
     }
 }
