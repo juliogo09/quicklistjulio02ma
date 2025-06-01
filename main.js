@@ -1,5 +1,10 @@
 const items = []
 
+if(itemName === "") {
+    alert("Digite um item válido!")
+    return
+}
+
 function addItem() {
     const itemName = document.querySelector("#item").value
 
