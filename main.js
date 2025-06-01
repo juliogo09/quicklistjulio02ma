@@ -35,6 +35,8 @@ function showItemsList(){
             </div>
         `
     })
+
+    localStorage.setItem("items", JSON.stringify(items))
 }
 
 function removeItem(itemName) {
@@ -75,4 +77,13 @@ function addHideWarningClass(){
     document.querySelector(".warning").classList.add("hide-warning")
 }
 
-//Teste
+function verifyLocalStorageItems() {
+    const localStorageItems = localStorage.getItem("items")
+
+    if (localStorageItems) {
+        items = JSON.parse(localStorageItems)
+        showItemsList()
+    }
+}
+
+verifyLocalStorageItems()
