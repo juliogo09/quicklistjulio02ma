@@ -1,10 +1,5 @@
 const items = []
 
-if(itemName === "") {
-    alert("Digite um item válido!")
-    return
-}
-
 function addItem() {
     const itemName = document.querySelector("#item").value
 
@@ -74,4 +69,8 @@ function checkItem(itemName) {
     item.checked = !item.checked
     
     showItemsList() 
+}
+
+function addHideWarningClass(){
+    document.querySelector(".warning").classList.add("hide-warning")
 }
