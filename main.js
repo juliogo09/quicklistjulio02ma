@@ -89,3 +89,5 @@ function verifyLocalStorageItems() {
 }
 
 verifyLocalStorageItems()
+
+//TESTE
