@@ -1,8 +1,13 @@
-const items = []
+let items = []
 
 function addItem() {
     const itemName = document.querySelector("#item").value
 
+    if (itemName === "") {
+        alert("Digite um nome válido!")
+        return
+    }
+    
     const item = {
         name: itemName,
         checked: false
@@ -15,15 +20,15 @@ function addItem() {
     showItemsList()
 }
 
-function showItemsList(){
+function showItemsList() {
     const sectionList = document.querySelector(".list")
     sectionList.textContent = ""
 
-    items.sort((itemA, itemB) => Number(itemA.checked) = Number(itemB.checked))
-    
-    items.map((item, index) =>{
-        sectionList.innerHTML += `
-        <div class="item">
+    items.sort((itemA, itemB) => Number(itemA.checked) - Number(itemB.checked))
+
+    items.map((item, index) => {
+    sectionList.innerHTML += `
+    <div class="item">
                 <div>
                     <input type="checkbox" name="list" id="item-${index}" ${item.checked && "checked"}>
                     <div class="custom-checkbox" onclick="checkItem('${item.name}')">
@@ -35,59 +40,46 @@ function showItemsList(){
                       <img src="./assets/trash-icon.svg" alt="trash icon">
                 </button>
             </div>
-        `
+    `
     })
 
-    localStorage.setItem("items", JSON.stringify(items))
+    localStorage.setItem("items", JSON.stringfy(items))
 }
 
 function removeItem(itemName) {
-    const itemIndex = items.findIndex((item) => item.name === itemName)
-    const divWarning = document.querySelector(".warning")
+   const itemIndex = items.findIndex((item) => item.name === itemName)
+   const divWarning = document.querySelector(".warning")
 
-    divWarning.classList.remove("hide-warning")
+   divWarning.classList.remove("hide-warning")
 
-    setTimeout(() => {
-        divWarning.classList.add("hide-warning")
-    }, 4000)
+   setTimeout(() => {
+      divWarning.classList.add("hide-warning")
+   }, 4000)
 
-    if(itemIndex !== -1) {
-        items.splice(itemIndex, 1)
-    }
+   if (itemIndex !== -1) {
+       items.splice(itemIndex, 1)
+   }
 
-    showItemsList()
+   showItemsList()
 }
 
 function checkItem(itemName) {
-    const item = item.find((item) => item.name === itemName)
-
-    //if(item.checked === true) {
-        //item.checked = false
-    //} else {
-        //item.checked = true
-    //}
-
-    
-    //item.checked ? item.checked = false : item.checked = true
-
+    const item = items.find((item) => item.name === itemName)
     item.checked = !item.checked
-    
-    showItemsList() 
+    showItemsList()
 }
 
-function addHideWarningClass(){
+function addHideWarningClass() {
     document.querySelector(".warning").classList.add("hide-warning")
 }
 
 function verifyLocalStorageItems() {
-    const localStorageItems = localStorage.getItem("items")
+   const localStorageItems = localStorage.getItem("items")
 
-    if (localStorageItems) {
-        items = JSON.parse(localStorageItems)
-        showItemsList()
-    }
+   if (localStorageItems) {
+      items = JSON.parse(localStorageItems)
+      showItemsList()
+   }
 }
 
 verifyLocalStorageItems()
-
-//TESTE
